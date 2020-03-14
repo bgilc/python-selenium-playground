@@ -2,7 +2,7 @@ import unittest
 from functions import *
 from selectors import *
 
-class TestCases(unittest.TestCase):
+class TestCasesTheInternetHerokuapp(unittest.TestCase):
 
     def setUp(self):
         self.action = Actions()
