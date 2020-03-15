@@ -1,4 +1,5 @@
 import time
+import getpass
 from pathlib import Path
 from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
@@ -6,7 +7,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selectors import *
 
-file_download_path = Path("C:/Users/sion/Downloads/")
+file_download_path = Path("C:/Users/"+getpass.getuser()+"/Downloads/")
 main_page_the_internet_herokuapp = 'https://the-internet.herokuapp.com'
 
 class Common():
