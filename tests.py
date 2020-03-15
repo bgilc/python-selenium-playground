@@ -12,8 +12,7 @@ class TestCasesTheInternetHerokuapp(unittest.TestCase):
 
     def test_download_file(self):
         self.action.download_file()
-        self.action.does_file_exist()
-        self.assertEqual(downloaded_file_hash, self.action.downloaded_file_check_hash(), 'Wrong hash!')
+        self.assertTrue(self.action.does_file_exist())
 
     def test_search_for_typo(self):
         self.action.search_for_typo_page_go_to()

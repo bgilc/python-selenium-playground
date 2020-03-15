@@ -1,5 +1,5 @@
 text_to_check_first_line = '//*[@id="content"]/div/p[1]'
 text_to_check_second_line = '//*[@id="content"]/div/p[2]'
-file_to_download = '//*[@id="content"]/div/a[17]'
+file_to_download = '//*[@id="content"]/div/a[1]'
 file_download_page = '//*[@id="content"]/ul/li[17]/a'
 typo_page = '//*[@id="content"]/ul/li[43]/a'
