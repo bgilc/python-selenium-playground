@@ -2,4 +2,8 @@ text_to_check_first_line = '//*[@id="content"]/div/p[1]'
 text_to_check_second_line = '//*[@id="content"]/div/p[2]'
 file_to_download = '//*[@id="content"]/div/a[1]'
 file_download_page = '//*[@id="content"]/ul/li[17]/a'
+file_upload_page = '//*[@id="content"]/ul/li[18]/a'
+file_upload_input = '//*[@id="file-upload"]'
+file_upload_button = '//*[@id="file-submit"]'
+file_upload_result = "//*[contains(@class,'panel')]"
 typo_page = '//*[@id="content"]/ul/li[43]/a'

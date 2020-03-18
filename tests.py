@@ -19,5 +19,9 @@ class TestCasesTheInternetHerokuapp(unittest.TestCase):
         self.assertEqual('This example demonstrates a typo being introduced. It does it randomly on each page load.', self.action.driver.find_element_by_xpath(text_to_check_first_line).get_attribute('outerText'), 'Typo detected!')
         self.assertEqual("Sometimes you'll see a typo, other times you won't.", self.action.driver.find_element_by_xpath(text_to_check_second_line).get_attribute('outerText'), 'Typo detected!')
 
+    def test_file_upload(self):
+        self.action.upload_file()
+        self.assertEqual('test_file.jpg', self.action.driver.find_element_by_xpath(file_upload_result).get_attribute('innerText'), 'Upload failed!')
+
 if __name__ == '__main__':
     unittest.main()
