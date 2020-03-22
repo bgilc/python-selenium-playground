@@ -20,11 +20,16 @@ class Common():
         WebDriverWait(self.driver, wait_time).until(EC.presence_of_element_located((selector_type, target)))
         self.driver.find_element_by_xpath(target).click()
 
+    def search_for_click(self, value):
+        searching = f"//*[text() = '{value}']"
+        WebDriverWait(self.driver, 30).until(EC.presence_of_element_located((By.XPATH, searching)))
+        self.driver.find_element_by_xpath(searching).click()
+
 class Actions(Common):
 
     def download_file(self):
         self.driver.get(main_page_the_internet_herokuapp)
-        self.wait_click(file_download_page)
+        self.search_for_click('File Download')
         self.wait_click(file_to_download)
 
     def does_file_exist(self):
@@ -39,11 +44,11 @@ class Actions(Common):
 
     def search_for_typo_page_go_to(self):
         self.driver.get(main_page_the_internet_herokuapp)
-        self.wait_click(typo_page)
+        self.search_for_click('Typos')
 
     def upload_file(self):
         self.driver.get(main_page_the_internet_herokuapp)
-        self.wait_click(file_upload_page)
+        self.search_for_click('File Upload')
         WebDriverWait(self.driver, 30).until(EC.presence_of_element_located((By.XPATH, file_upload_input)))
         self.driver.find_element_by_xpath(file_upload_input).send_keys(str(file_to_upload))
         self.driver.find_element_by_xpath(file_upload_button).click()
