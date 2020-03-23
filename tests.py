@@ -6,6 +6,7 @@ class TestCasesTheInternetHerokuapp(unittest.TestCase):
 
     def setUp(self):
         self.action = Actions()
+        self.action.driver.get('https://the-internet.herokuapp.com')
 
     def tearDown(self):
         self.action.driver.quit()

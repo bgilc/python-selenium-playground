@@ -9,7 +9,6 @@ from selectors import *
 
 file_download_path = Path("C:/Users/"+getpass.getuser()+"/Downloads/")
 file_to_upload = Path("C:/Users/"+getpass.getuser()+"/test_file.jpg")
-main_page_the_internet_herokuapp = 'https://the-internet.herokuapp.com'
 
 class Common():
 
@@ -28,7 +27,6 @@ class Common():
 class Actions(Common):
 
     def download_file(self):
-        self.driver.get(main_page_the_internet_herokuapp)
         self.search_for_click('File Download')
         self.wait_click(file_to_download)
 
@@ -43,11 +41,9 @@ class Actions(Common):
             return False
 
     def search_for_typo_page_go_to(self):
-        self.driver.get(main_page_the_internet_herokuapp)
         self.search_for_click('Typos')
 
     def upload_file(self):
-        self.driver.get(main_page_the_internet_herokuapp)
         self.search_for_click('File Upload')
         WebDriverWait(self.driver, 30).until(EC.presence_of_element_located((By.XPATH, file_upload_input)))
         self.driver.find_element_by_xpath(file_upload_input).send_keys(str(file_to_upload))
