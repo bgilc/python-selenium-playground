@@ -11,6 +11,10 @@ class TestCasesTheInternetHerokuapp(unittest.TestCase):
     def tearDown(self):
         self.action.driver.quit()
 
+    def test_add_remove_element(self):
+        self.action.add_remove_element()
+        self.assertFalse(self.action.driver.find_elements_by_xpath(delete_element_button), "Element which shoudn't be visible is visible!")
+
     def test_download_file(self):
         self.action.download_file()
         self.assertTrue(self.action.does_file_exist())

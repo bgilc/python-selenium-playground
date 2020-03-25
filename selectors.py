@@ -7,3 +7,5 @@ file_upload_input = '//*[@id="file-upload"]'
 file_upload_button = '//*[@id="file-submit"]'
 file_upload_result = "//*[contains(@class,'panel')]"
 typo_page = '//*[@id="content"]/ul/li[43]/a'
+add_element_button = '//*[@id="content"]/div/button'
+delete_element_button = '//*[@id="elements"]/button'

@@ -26,6 +26,11 @@ class Common():
 
 class Actions(Common):
 
+    def add_remove_element(self):
+        self.search_for_click('Add/Remove Elements')
+        self.wait_click(add_element_button)
+        self.wait_click(delete_element_button)
+
     def download_file(self):
         self.search_for_click('File Download')
         self.wait_click(file_to_download)
