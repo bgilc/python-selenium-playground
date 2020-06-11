@@ -9,3 +9,6 @@ file_upload_result = "//*[contains(@class,'panel')]"
 typo_page = '//*[@id="content"]/ul/li[43]/a'
 add_element_button = '//*[@id="content"]/div/button'
 delete_element_button = '//*[@id="elements"]/button'
+forgot_password_input_field = '//*[@id="email"]'
+forgot_password_button = '//*[@id="form_submit"]/i'
+forgot_password_confirmation = '//*[@id="content"]'

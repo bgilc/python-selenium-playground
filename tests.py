@@ -19,6 +19,10 @@ class TestCasesTheInternetHerokuapp(unittest.TestCase):
         self.action.download_file()
         self.assertTrue(self.action.does_file_exist())
 
+    def test_forgot_password(self):
+        self.action.forgot_password()
+        self.assertEqual("Your e-mail's been sent!", self.action.driver.find_element_by_xpath(forgot_password_confirmation).text, "Something is wrong!")
+
     def test_search_for_typo(self):
         self.action.search_for_typo_page_go_to()
         self.assertEqual('This example demonstrates a typo being introduced. It does it randomly on each page load.', self.action.driver.find_element_by_xpath(text_to_check_first_line).get_attribute('outerText'), 'Typo detected!')

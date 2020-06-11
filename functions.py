@@ -45,6 +45,12 @@ class Actions(Common):
         else:
             return False
 
+    def forgot_password(self):
+        self.search_for_click('Forgot Password')
+        self.driver.find_element_by_xpath(forgot_password_input_field).send_keys('xkscd@cksx.pl')
+        self.driver.find_element_by_xpath(forgot_password_button).click()
+        WebDriverWait(self.driver, 30).until(EC.presence_of_element_located((By.XPATH, forgot_password_confirmation)))
+
     def search_for_typo_page_go_to(self):
         self.search_for_click('Typos')
 
