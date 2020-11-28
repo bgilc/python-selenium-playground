@@ -15,6 +15,12 @@ class TestCasesTheInternetHerokuapp(unittest.TestCase):
         self.action.add_remove_element()
         self.assertFalse(self.action.driver.find_elements_by_xpath(delete_element_button), "Element which shoudn't be visible is visible!")
 
+    def test_basic_authentication(self):
+        self.action.basic_authentication()
+        self.assertEqual("Congratulations! You must have the proper credentials.",
+                         self.action.driver.find_element_by_xpath(basic_auth_success).text,
+                         'Auth failed')
+
     def test_download_file(self):
         self.action.download_file()
         self.assertTrue(self.action.does_file_exist())

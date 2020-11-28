@@ -1,5 +1,6 @@
 import time
 import getpass
+import keyboard
 from pathlib import Path
 from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
@@ -30,6 +31,14 @@ class Actions(Common):
         self.search_for_click('Add/Remove Elements')
         self.wait_click(add_element_button)
         self.wait_click(delete_element_button)
+
+    def basic_authentication(self):
+        self.search_for_click('Basic Auth')
+        keyboard.write("admin")
+        keyboard.press_and_release("tab")
+        keyboard.write("admin")
+        keyboard.press_and_release("enter")
+        WebDriverWait(self.driver, 30).until(EC.presence_of_element_located((By.XPATH, basic_auth_success)))
 
     def download_file(self):
         self.search_for_click('File Download')
