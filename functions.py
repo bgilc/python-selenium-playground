@@ -29,8 +29,8 @@ class Actions(Common):
 
     def add_remove_element(self):
         self.search_for_click('Add/Remove Elements')
-        self.wait_click(add_element_button)
-        self.wait_click(delete_element_button)
+        self.search_for_click('Add Element')
+        self.search_for_click('Delete')
 
     def basic_authentication(self):
         self.search_for_click('Basic Auth')
