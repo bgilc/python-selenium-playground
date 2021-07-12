@@ -13,6 +13,7 @@ file_to_upload = Path("C:/Users/"+getpass.getuser()+"/test_file.jpg")
 
 class Common():
 
+
     def __init__(self):
         self.driver = webdriver.Chrome()
 
@@ -24,6 +25,13 @@ class Common():
         searching = f"//*[text() = '{value}']"
         WebDriverWait(self.driver, 30).until(EC.presence_of_element_located((By.XPATH, searching)))
         self.driver.find_element_by_xpath(searching).click()
+
+    def does_element_exist(self, selector):
+        if len(selector) > 0:
+            return True
+        else:
+            return False
+
 
 class Actions(Common):
 

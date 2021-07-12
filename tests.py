@@ -13,7 +13,7 @@ class TestCasesTheInternetHerokuapp(unittest.TestCase):
 
     def test_add_remove_element(self):
         self.action.add_remove_element()
-        self.assertFalse(self.action.driver.find_elements_by_xpath(delete_element_button), "Element which shoudn't be visible is visible!")
+        self.assertEqual(False, self.action.does_element_exist(self.action.driver.find_elements_by_class_name('added-manually')), 'Button should not exist.')
 
     def test_basic_authentication(self):
         self.action.basic_authentication()
