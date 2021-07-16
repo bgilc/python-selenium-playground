@@ -25,7 +25,7 @@ class TestCasesTheInternetHerokuapp(unittest.TestCase):
                          'Auth failed')
 
     def test_broken_images(self):
-        self.assertEqual(True, self.action.broken_images(), 'All response codes valid.')
+        self.assertEqual(True, self.action.broken_images(), 'Some response codes are not valid.')
 
     def test_download_file(self):
         self.action.download_file()
