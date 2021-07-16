@@ -8,11 +8,11 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selectors import *
 
-file_download_path = Path("C:/Users/"+getpass.getuser()+"/Downloads/")
-file_to_upload = Path("C:/Users/"+getpass.getuser()+"/test_file.jpg")
+file_download_path = Path("C:/Users/" + getpass.getuser() + "/Downloads/")
+file_to_upload = Path("C:/Users/" + getpass.getuser() + "/test_file.jpg")
+
 
 class Common():
-
 
     def __init__(self):
         self.driver = webdriver.Chrome()
@@ -35,6 +35,25 @@ class Common():
 
 class Actions(Common):
 
+    def ab(self):
+        self.search_for_click('A/B Testing')
+        text_value_before_cookie_insert = self.driver.find_element_by_tag_name('h3').text
+        self.driver.add_cookie({"name": "optimizelyOptOut", "value": "true"})
+        self.driver.refresh()
+        text_value_after_cookie_insert = self.driver.find_element_by_tag_name('h3').text
+        if text_value_before_cookie_insert == 'A/B Test Control' or text_value_before_cookie_insert == 'A/B Test Variation 1':
+            before_cookie = True
+        else:
+            before_cookie = False
+        if text_value_after_cookie_insert == 'No A/B Test':
+            after_cookie = True
+        else:
+            after_cookie = False
+        if before_cookie == True and after_cookie == True:
+            return True
+        else:
+            return False
+
     def add_remove_element(self):
         self.search_for_click('Add/Remove Elements')
         self.search_for_click('Add Element')
@@ -54,10 +73,13 @@ class Actions(Common):
 
     def does_file_exist(self):
         seconds_waited = 0
-        while seconds_waited < 60 and Path.exists(file_download_path / self.driver.find_element_by_xpath(file_to_download).get_attribute('innerText')) == False:
+        while seconds_waited < 60 and Path.exists(
+                file_download_path / self.driver.find_element_by_xpath(file_to_download).get_attribute(
+                    'innerText')) == False:
             time.sleep(1)
             seconds_waited += 1
-        if Path.exists(file_download_path / self.driver.find_element_by_xpath(file_to_download).get_attribute('innerText')):
+        if Path.exists(
+                file_download_path / self.driver.find_element_by_xpath(file_to_download).get_attribute('innerText')):
             return True
         else:
             return False

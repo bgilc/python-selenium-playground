@@ -11,6 +11,9 @@ class TestCasesTheInternetHerokuapp(unittest.TestCase):
     def tearDown(self):
         self.action.driver.quit()
 
+    def test_ab(self):
+        self.assertEqual(True, self.action.ab(), 'Invalid value before or after cookie insert.')
+
     def test_add_remove_element(self):
         self.action.add_remove_element()
         self.assertEqual(False, self.action.does_element_exist(self.action.driver.find_elements_by_class_name('added-manually')), 'Button should not exist.')
