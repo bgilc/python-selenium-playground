@@ -78,6 +78,11 @@ class Actions(Common):
         else:
             return False
 
+    def checkboxes(self):
+        self.search_for_click('Checkboxes')
+        self.wait_click(checkboxes_input1)
+        self.wait_click(checkboxes_input2)
+
     def download_file(self):
         self.search_for_click('File Download')
         self.wait_click(file_to_download)
