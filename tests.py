@@ -24,6 +24,9 @@ class TestCasesTheInternetHerokuapp(unittest.TestCase):
                          self.action.driver.find_element_by_xpath(basic_auth_success).text,
                          'Auth failed')
 
+    def test_broken_images(self):
+        self.assertEqual(True, self.action.broken_images(), 'All response codes valid.')
+
     def test_download_file(self):
         self.action.download_file()
         self.assertTrue(self.action.does_file_exist())

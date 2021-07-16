@@ -1,6 +1,7 @@
 import time
 import getpass
 import keyboard
+import requests
 from pathlib import Path
 from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
@@ -66,6 +67,16 @@ class Actions(Common):
         keyboard.write("admin")
         keyboard.press_and_release("enter")
         WebDriverWait(self.driver, 30).until(EC.presence_of_element_located((By.XPATH, basic_auth_success)))
+
+    def broken_images(self):
+        self.search_for_click('Broken Images')
+        image1 = requests.get('https://the-internet.herokuapp.com/asdf.jpg').status_code
+        image2 = requests.get('https://the-internet.herokuapp.com/hjkl.jpg').status_code
+        image3 = requests.get('https://the-internet.herokuapp.com/img/avatar-blank.jpg').status_code
+        if image1 == 404 and image2 == 404 and image3 == 200:
+            return True
+        else:
+            return False
 
     def download_file(self):
         self.search_for_click('File Download')
