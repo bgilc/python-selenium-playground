@@ -7,6 +7,8 @@ from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
+from selenium.webdriver import ActionChains
+from selenium.common.exceptions import NoAlertPresentException
 from selectors import *
 
 file_download_path = Path("C:/Users/" + getpass.getuser() + "/Downloads/")
@@ -83,6 +85,17 @@ class Actions(Common):
         self.wait_click(checkboxes_input1)
         self.wait_click(checkboxes_input2)
 
+    def context_menu(self):
+        self.search_for_click('Context Menu')
+        action = ActionChains(self.driver)
+        action.context_click(self.driver.find_element_by_id('hot-spot')).perform()
+        EC.alert_is_present()
+        self.driver.switch_to.alert.dismiss()
+        try:
+            self.driver.switch_to.alert.dismiss()
+        except NoAlertPresentException:
+            return True
+
     def download_file(self):
         self.search_for_click('File Download')
         self.wait_click(file_to_download)
@@ -115,3 +128,5 @@ class Actions(Common):
         self.driver.find_element_by_xpath(file_upload_input).send_keys(str(file_to_upload))
         self.driver.find_element_by_xpath(file_upload_button).click()
         WebDriverWait(self.driver, 30).until(EC.presence_of_element_located((By.XPATH, file_upload_result)))
+
+

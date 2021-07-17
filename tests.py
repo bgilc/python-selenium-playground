@@ -36,6 +36,10 @@ class TestCasesTheInternetHerokuapp(unittest.TestCase):
         self.assertEqual(False, self.action.driver.find_element_by_xpath(checkboxes_input2).is_selected(),
                          'Input 2 is checked.')
 
+    def test_context_menu(self):
+        self.assertEqual(True, self.action.context_menu(),
+                         'Second dismissal of alert succeeded, the first one probably failed.')
+
     def test_download_file(self):
         self.action.download_file()
         self.assertTrue(self.action.does_file_exist())
