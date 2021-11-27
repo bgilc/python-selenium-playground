@@ -22,12 +22,12 @@ class Common():
 
     def wait_click(self, target, wait_time=30, selector_type=By.XPATH):
         WebDriverWait(self.driver, wait_time).until(EC.presence_of_element_located((selector_type, target)))
-        self.driver.find_element_by_xpath(target).click()
+        self.driver.find_element(By.XPATH, target).click()
 
     def search_for_click(self, value):
         searching = f"//*[text() = '{value}']"
         WebDriverWait(self.driver, 30).until(EC.presence_of_element_located((By.XPATH, searching)))
-        self.driver.find_element_by_xpath(searching).click()
+        self.driver.find_element(By.XPATH, searching).click()
 
     def does_element_exist(self, selector):
         if len(selector) > 0:
@@ -40,10 +40,10 @@ class Actions(Common):
 
     def ab(self):
         self.search_for_click('A/B Testing')
-        text_value_before_cookie_insert = self.driver.find_element_by_tag_name('h3').text
+        text_value_before_cookie_insert = self.driver.find_element(By.TAG_NAME, 'h3').text
         self.driver.add_cookie({"name": "optimizelyOptOut", "value": "true"})
         self.driver.refresh()
-        text_value_after_cookie_insert = self.driver.find_element_by_tag_name('h3').text
+        text_value_after_cookie_insert = self.driver.find_element(By.TAG_NAME, 'h3').text
         if text_value_before_cookie_insert == 'A/B Test Control' or text_value_before_cookie_insert == 'A/B Test Variation 1':
             before_cookie = True
         else:
@@ -88,7 +88,7 @@ class Actions(Common):
     def context_menu(self):
         self.search_for_click('Context Menu')
         action = ActionChains(self.driver)
-        action.context_click(self.driver.find_element_by_id('hot-spot')).perform()
+        action.context_click(self.driver.find_element(By.ID, 'hot-spot')).perform()
         EC.alert_is_present()
         self.driver.switch_to.alert.dismiss()
         try:
@@ -103,20 +103,20 @@ class Actions(Common):
     def does_file_exist(self):
         seconds_waited = 0
         while seconds_waited < 60 and Path.exists(
-                file_download_path / self.driver.find_element_by_xpath(file_to_download).get_attribute(
+                file_download_path / self.driver.find_element(By.XPATH, file_to_download).get_attribute(
                     'innerText')) == False:
             time.sleep(1)
             seconds_waited += 1
         if Path.exists(
-                file_download_path / self.driver.find_element_by_xpath(file_to_download).get_attribute('innerText')):
+                file_download_path / self.driver.find_element(By.XPATH, file_to_download).get_attribute('innerText')):
             return True
         else:
             return False
 
     def forgot_password(self):
         self.search_for_click('Forgot Password')
-        self.driver.find_element_by_xpath(forgot_password_input_field).send_keys('xkscd@cksx.pl')
-        self.driver.find_element_by_xpath(forgot_password_button).click()
+        self.driver.find_element(By.XPATH, forgot_password_input_field).send_keys('xkscd@cksx.pl')
+        self.driver.find_element(By.XPATH, forgot_password_button).click()
         WebDriverWait(self.driver, 30).until(EC.presence_of_element_located((By.XPATH, forgot_password_confirmation)))
 
     def search_for_typo_page_go_to(self):
@@ -125,8 +125,6 @@ class Actions(Common):
     def upload_file(self):
         self.search_for_click('File Upload')
         WebDriverWait(self.driver, 30).until(EC.presence_of_element_located((By.XPATH, file_upload_input)))
-        self.driver.find_element_by_xpath(file_upload_input).send_keys(str(file_to_upload))
-        self.driver.find_element_by_xpath(file_upload_button).click()
+        self.driver.find_element(By.XPATH, file_upload_input).send_keys(str(file_to_upload))
+        self.driver.find_element(By.XPATH, file_upload_button).click()
         WebDriverWait(self.driver, 30).until(EC.presence_of_element_located((By.XPATH, file_upload_result)))
-
-
